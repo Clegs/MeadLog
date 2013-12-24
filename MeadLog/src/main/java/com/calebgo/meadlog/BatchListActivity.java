@@ -53,13 +53,17 @@ public class BatchListActivity extends FragmentActivity
         // TODO: If exposing deep links into your app, handle intents here.
 
         // Check to see if we have a server.
-        SharedPreferences preferences = getSharedPreferences(Configuration.getInstance().globalSharedPrefsName(),
-                MODE_PRIVATE);
-        String serverUrl = preferences.getString("Server", "");
-        if (serverUrl.length() == 0) {
-            Intent intent = new Intent(this, SettingsActivity.class);
-            startActivity(intent);
-        }
+        // If we don't have a server configured then open the settings screen.
+        checkSettings();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Check to see if we have a server.
+        // If we don't have a server configured then open the settings screen.
+        checkSettings();
     }
 
     /**
@@ -86,6 +90,19 @@ public class BatchListActivity extends FragmentActivity
             Intent detailIntent = new Intent(this, BatchDetailActivity.class);
             detailIntent.putExtra(BatchDetailFragment.ARG_ITEM_ID, id);
             startActivity(detailIntent);
+        }
+    }
+
+    /**
+     * Check to see if the settings are defined. If they aren't then open the settings screen.
+     */
+    protected void checkSettings() {
+        SharedPreferences preferences = getSharedPreferences(Configuration.getInstance().globalSharedPrefsName(),
+                MODE_PRIVATE);
+        String serverUrl = preferences.getString("Server", "");
+        if (serverUrl.length() == 0) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
         }
     }
 }
