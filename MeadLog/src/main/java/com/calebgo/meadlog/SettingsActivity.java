@@ -7,10 +7,9 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.TextView;
-import org.apache.http.client.protocol.ClientContextConfigurer;
 
 /**
- * Created by caleb on 12/23/13.
+ * Settings screen where the user configures their connection to the server.
  */
 public class SettingsActivity extends Activity {
     @Override
