@@ -2,6 +2,8 @@
 <resources>
 
     <string name="app_name">MeadLog</string>
+    <string name="server_label">Server:</string>
+    <string name="settings">Settings</string>
     <string name="title_batch_detail">Batch Detail</string>
 
 </resources>

@@ -1,6 +1,7 @@
 package com.calebgo.meadlog;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
@@ -50,6 +51,15 @@ public class BatchListActivity extends FragmentActivity
         }
 
         // TODO: If exposing deep links into your app, handle intents here.
+
+        // Check to see if we have a server.
+        SharedPreferences preferences = getSharedPreferences(Configuration.getInstance().globalSharedPrefsName(),
+                MODE_PRIVATE);
+        String serverUrl = preferences.getString("Server", "");
+        if (serverUrl.length() == 0) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
+        }
     }
 
     /**
