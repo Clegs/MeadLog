@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MeadLog</string>
+    <string name="title_batch_detail">Batch Detail</string>
+
+</resources>

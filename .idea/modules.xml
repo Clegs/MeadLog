@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/MeadLog.iml" filepath="$PROJECT_DIR$/MeadLog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MeadLog/MeadLog-MeadLog.iml" filepath="$PROJECT_DIR$/MeadLog/MeadLog-MeadLog.iml" />
+    </modules>
+  </component>
+</project>
+
