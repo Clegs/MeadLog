@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 
 /**
@@ -66,6 +69,25 @@ public class BatchListActivity extends FragmentActivity
         checkSettings();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.mainmenu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.settingsMainMenuItem:
+                Intent intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     /**
      * Callback method from {@link BatchListFragment.Callbacks}
      * indicating that the item with the given ID was selected.
@@ -99,7 +121,8 @@ public class BatchListActivity extends FragmentActivity
     protected void checkSettings() {
         SharedPreferences preferences = getSharedPreferences(Configuration.getInstance().globalSharedPrefsName(),
                 MODE_PRIVATE);
-        String serverUrl = preferences.getString(Configuration.getInstance().serverKey(), "");
+        String key = Configuration.getInstance().serverKey();
+        String serverUrl = preferences.getString(key, "");
         if (serverUrl.length() == 0) {
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);

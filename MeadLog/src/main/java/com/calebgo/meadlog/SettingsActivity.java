@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
+import android.widget.TextView;
+import org.apache.http.client.protocol.ClientContextConfigurer;
 
 /**
  * Created by caleb on 12/23/13.
@@ -16,7 +18,7 @@ public class SettingsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        EditText serverText = (EditText)findViewById(R.id.passwordText);
+        EditText serverText = (EditText)findViewById(R.id.serverText);
         serverText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
@@ -33,11 +35,19 @@ public class SettingsActivity extends Activity {
 
             }
         });
+
+        // Get the server url.
+        SharedPreferences preferences = getSharedPreferences(Configuration.getInstance().globalSharedPrefsName(),
+                MODE_PRIVATE);
+        serverText.setText(preferences.getString(Configuration.getInstance().serverKey(), ""),
+                TextView.BufferType.EDITABLE);
     }
 
     protected void serverTextChanged(String text) {
         SharedPreferences preferences = getSharedPreferences(Configuration.getInstance().globalSharedPrefsName(),
                 MODE_PRIVATE);
-        preferences.edit().putString(Configuration.getInstance().serverKey(), text);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(Configuration.getInstance().serverKey(), text);
+        editor.commit();
     }
 }
