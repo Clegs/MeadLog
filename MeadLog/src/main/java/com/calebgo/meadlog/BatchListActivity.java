@@ -99,7 +99,7 @@ public class BatchListActivity extends FragmentActivity
     protected void checkSettings() {
         SharedPreferences preferences = getSharedPreferences(Configuration.getInstance().globalSharedPrefsName(),
                 MODE_PRIVATE);
-        String serverUrl = preferences.getString("Server", "");
+        String serverUrl = preferences.getString(Configuration.getInstance().serverKey(), "");
         if (serverUrl.length() == 0) {
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);

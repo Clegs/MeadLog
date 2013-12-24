@@ -17,4 +17,8 @@ public class Configuration {
     public String globalSharedPrefsName() {
         return "MeadLogPrefs";
     }
+
+    public String serverKey() {
+        return "Server";
+    }
 }
